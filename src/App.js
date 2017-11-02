@@ -10,15 +10,15 @@ import logo from './icons/logo.svg';
 class App extends Component {
   render() {
     return (
-      <div className="App">
+      <div className="app">
         <div className='header'>
           <img src={logo} className="app-logo" alt="logo" />
-          <h2 className="App-title">
+          <h2 className="app-title">
             <Emoji label="danger" emoji="☢" />
             <span> custom-react-scripts </span>
             <Emoji label="danger" emoji="☢" />
           </h2>
-          <div className="App-subtitle">
+          <div className="app-subtitle">
             allow custom config for create-react-app without ejecting
           </div>
         </div>

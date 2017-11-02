@@ -1,0 +1,42 @@
+body
+  font-family 'Source Sans Pro', 'Helvetica Neue', Arial, sans-serif
+  -webkit-font-smoothing antialiased
+  -moz-osx-font-smoothing grayscale
+  -webkit-tap-highlight-color transparent
+  -webkit-text-size-adjust: none;
+  outline none
+  -webkit-appearance none
+
+div, nav, footer, section, article, h1, h2, h3, h4, h5,
+aside, figure, footer, header, main // 2
+  box-sizing border-box
+
+textarea, input[type="password"], input[type="text"]
+  resize none /*禁用可缩放*/
+  outline none /*禁用发光效果*/
+  -webkit-appearance none /*禁用增加外观效果*/
+  white-space pre-wrap
+  -webkit-tap-highlight-color transparent
+  -webkit-overflow-scrolling touch
+
+.ellipsis
+  text-overflow ellipsis
+  white-space nowrap
+  overflow hidden
+.a
+  cursor pointer
+.b
+  font-weight bold
+a
+  color unset // not supported by IE
+  text-decoration none
+  &:hover
+    text-decoration underline
+
+/**
+ * Visibility 
+ */
+.hide
+  display none!important
+.show
+  display block!important
