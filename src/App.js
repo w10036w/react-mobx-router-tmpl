@@ -1,35 +1,28 @@
-import React, { Component } from 'react';
-//components
-import Emoji from './components/Emoji';
+import React, { Component } from 'react'
+import { inject, observer } from 'mobx-react'
 //styles
+import './styles/css/index.css';
+import './styles/css/bootstrap-grid.css';
 import './App.styl';
 
-import logo from './icons/logo.svg';
-// const logo = require('../public/icons/logo.svg')
+@inject('routing')
+@observer
+export default class App extends Component {
+  
+  push = () => {
+    const { location, push } = this.props.routing
+    if (location.pathname !== '/test')
+      push('/test')
+  }
 
-class App extends Component {
   render() {
+    const { location, goBack } = this.props.routing
     return (
-      <div className="app">
-        <div className='header'>
-          <img src={logo} className="app-logo" alt="logo" />
-          <h2 className="app-title">
-            <Emoji label="danger" emoji="☢" />
-            <span> custom-react-scripts </span>
-            <Emoji label="danger" emoji="☢" />
-          </h2>
-          <div className="app-subtitle">
-            allow custom config for create-react-app without ejecting
-          </div>
-        </div>
-        <div className='description'>
-          <code>
-            create-react-app my-app --scripts-version custom-react-scripts
-          </code>
-        </div>
+      <div>
+        <span>Current pathname: {location.pathname}</span>
+        <button onClick={() => this.push('/test')}>Change url</button>
+        <button onClick={() => goBack()}>Go Back</button>
       </div>
     );
   }
 }
-
-export default App;
