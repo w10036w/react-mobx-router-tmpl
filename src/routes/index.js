@@ -1,19 +1,20 @@
 import React from 'react'
-import { Router, Route } from 'react-router'
-
+import { Route, Switch } from 'react-router'
 // routes
 // import articles from './_articles'
-// import home from './_home'
-const home = () => import('../views/HomeView')
+import HomeView from '../views/HomeView'
+import UserView from '../views/UserView'
+import ErrorView from '../views/ErrorView'
+// const HomeView = () => import('../views/HomeView')
 
-const routes = [home]
-
-const history = createBrowserHistory()
-
-export default () => (
-  <Router history={history}>
-    <div id='router'>
-      <Route path='/home/:name' component={home} />
-    </div>
-  </Router>
-)
+// list all routes here
+// export default function () => {
+export default class Routes extends React.PureComponent {
+  render = () => (
+    <Switch>
+      <Route exact path='/' component={HomeView} />
+      <Route path='/user/:name' component={UserView} />
+      <Route component={ErrorView} />
+    </Switch>
+  )
+}

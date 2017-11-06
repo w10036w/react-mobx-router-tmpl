@@ -1,29 +1,27 @@
 import React from 'react';
-import ReactDOM from 'react-dom'
-
-import createBrowserHistory from 'history/createBrowserHistory'
+import { render } from 'react-dom'
 import { Provider } from 'mobx-react'
-import { RouterStore, syncHistoryWithStore } from 'mobx-react-router'
-import { Router, Route } from 'react-router'
-
-import App from './App'
+import { RouterStore } from 'mobx-react-router'
+import { Router } from 'react-router'
+import createBrowserHistory from 'history/createBrowserHistory';
+import { syncHistoryWithStore } from 'mobx-react-router'
+// styles
+import './styles/index.styl'
+// service-worker
 import registerServiceWorker from './registerServiceWorker'
+// routes & store
+import Routes from './routes'
+import store from './store'
 
+// sync route & store
+const routing = new RouterStore()
 const browserHistory = createBrowserHistory();
-const routingStore = new RouterStore();
-const store = {
-  routing: routingStore
-}
-const history = syncHistoryWithStore(browserHistory, routingStore)
+const history = syncHistoryWithStore(browserHistory, routing)
 
-ReactDOM.render(
-  <Provider {...store}>
-    <Router history={history}>
-      <div>
-        <Route path='/' component={App} />
-        <Route path='/test' component={()=> (<div>test</div>)} />
-      </div>
-    </Router>
-  </Provider>
-, document.getElementById('root'));
+render(
+  <Provider routing={routing} {...store}>
+    <Router history={history}><Routes /></Router>
+  </Provider>, 
+  document.getElementById('root'));
+
 registerServiceWorker();
